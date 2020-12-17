@@ -125,7 +125,7 @@ function Header() {
                       </NavLink>
                     </li>
 
-                    <li className="nav-item dropdown">
+                    {/* <li className="nav-item dropdown">
                       <NavLink activeClassName="active-menu" href="#">
                         <a
                           className="nav-link dropdown-toggle"
@@ -286,7 +286,7 @@ function Header() {
                           </a>
                         </NavLink>
                       </div>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink activeClassName="active-menu" href="/results">
                         <a>RESULTS</a>
@@ -302,11 +302,11 @@ function Header() {
                         <a>SERIES</a>
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink activeClassName="active-menu" href="/stats">
                         <a>STATS</a>
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink activeClassName="active-menu" href="/ranking/teams/odi">
                         <a>RANKING</a>

@@ -85,7 +85,7 @@ function ICCTeamRanking() {
                     )
                   : null}
                 <li>
-                  <Link href="/ranking">
+                  <Link href="/ranking/teams/odi">
                     <a>Watch full ranking</a>
                   </Link>
                 </li>
@@ -128,7 +128,7 @@ function ICCTeamRanking() {
                     )
                   : null}
                 <li>
-                  <Link href="/ranking">
+                  <Link href="/ranking/teams/t20">
                     <a>Watch full ranking</a>
                   </Link>
                 </li>
@@ -171,7 +171,7 @@ function ICCTeamRanking() {
                     )
                   : null}
                 <li>
-                  <Link href="/ranking">
+                  <Link href="/ranking/teams/test">
                     <a>Watch full ranking</a>
                   </Link>
                 </li>

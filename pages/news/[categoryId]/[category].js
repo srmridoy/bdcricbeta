@@ -4,10 +4,10 @@ import Link from 'next/link';
 import axios from 'axios';
 import he from 'he';
 
-import MostPopular from '../src/Components/MostPopular';
-import LatestNews from '../src/Components/LatestNews';
-import NewsCards from '../src/Components/NewsCards';
-import Error from '../src/pages/Error';
+import MostPopular from '../../../src/Components/MostPopular';
+import LatestNews from '../../../src/Components/LatestNews';
+import NewsCards from '../../../src/Components/NewsCards';
+import Error from '../../../src/pages/Error';
 
 function News(props) {
   if (props.error) {
@@ -15,6 +15,7 @@ function News(props) {
   }
   const news = props.news;
   const loaded = props.loaded;
+  const activeMenu = props.activeMenu;
 
   return (
     <>
@@ -31,14 +32,16 @@ function News(props) {
                     <ul>
                       <li>
                         <Link href="/news">
-                          <a className="active-menu">All News</a>
+                          All News
                         </Link>
                       </li>
                       {props.menus.map((menu, index) => (
                         <li key={index}>
-                          <Link href={"/news/"+menu.object_id+"/"+menu.url.replace("https://www.bdcrictime.com/", "")}>
-                              {menu.title}
-                          </Link>
+                          <li key={index}>
+                            <Link href={"/news/"+menu.object_id+"/"+menu.url.replace("https://www.bdcrictime.com/", "")}>
+                                {menu.object_id === activeMenu ? <a className="active-menu">{menu.title}</a> : menu.title}
+                            </Link>
+                            </li>
                         </li>
                       ))}
                     </ul>
@@ -142,16 +145,31 @@ function News(props) {
     </>
   );
 }
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
   try {
     const url = 'https://www.bdcrictime.com/wp-json/wp/v2/menus';
     const res = await axios.get(url);
-    const news = await axios.get('https://www.bdcrictime.com/wp-json/wp/v2/posts?_embed');
+    console.log(params.categoryId);
+    if (res && res.data) {
+      const news = await axios.get(
+        'https://www.bdcrictime.com/wp-json/wp/v2/posts?categories=' +
+          params.categoryId +
+          '&_embed'
+      );
+      return {
+        props: {
+          menus: res.data,
+          activeMenu: params.categoryId,
+          news: news.data,
+          loaded: true,
+        },
+      };
+    }
 
     return {
       props: {
         menus: res.data,
-        news: news.data,
+        activeMenu: params.categoryId,
         loaded: true,
       },
     };

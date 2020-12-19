@@ -12,53 +12,53 @@
       $('.menu-open').toggleClass('toggle');
     });
 
-    $('.live-match-slider')
-      .not('.slick-initialized')
-      .slick({
-        dots: false,
-        centerMode: true,
-        arrows: true,
-        centerPadding: '50px',
-        slidesToShow: 5,
-        prevArrow:
-          '<button className="prev"><img src="./assets/img/left.svg" alt="logo"></button>',
-        nextArrow:
-          '<button className="next"><img src="./assets/img/right.png" alt="logo"></button>',
-        responsive: [
-          {
-            breakpoint: 1600,
-            settings: {
-              centerMode: true,
-              centerPadding: '50px',
-              slidesToShow: 5,
-            },
-          },
-          {
-            breakpoint: 1400,
-            settings: {
-              centerMode: true,
-              centerPadding: '50px',
-              slidesToShow: 3,
-            },
-          },
-          {
-            breakpoint: 992,
-            settings: {
-              centerMode: true,
-              centerPadding: '50px',
-              slidesToShow: 2,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              centerMode: true,
-              centerPadding: '50px',
-              slidesToShow: 1,
-            },
-          },
-        ],
-      });
+    // $('.live-match-slider')
+    //   .not('.slick-initialized')
+    //   .slick({
+    //     dots: false,
+    //     centerMode: true,
+    //     arrows: true,
+    //     centerPadding: '50px',
+    //     slidesToShow: 5,
+    //     prevArrow:
+    //       '<button className="prev"><img src="./assets/img/left.svg" alt="logo"></button>',
+    //     nextArrow:
+    //       '<button className="next"><img src="./assets/img/right.png" alt="logo"></button>',
+    //     responsive: [
+    //       {
+    //         breakpoint: 1600,
+    //         settings: {
+    //           centerMode: true,
+    //           centerPadding: '50px',
+    //           slidesToShow: 5,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 1400,
+    //         settings: {
+    //           centerMode: true,
+    //           centerPadding: '50px',
+    //           slidesToShow: 3,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 992,
+    //         settings: {
+    //           centerMode: true,
+    //           centerPadding: '50px',
+    //           slidesToShow: 2,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 768,
+    //         settings: {
+    //           centerMode: true,
+    //           centerPadding: '50px',
+    //           slidesToShow: 1,
+    //         },
+    //       },
+    //     ],
+    //   });
 
     $('.post-slilder-main').owlCarousel({
       items: 3,

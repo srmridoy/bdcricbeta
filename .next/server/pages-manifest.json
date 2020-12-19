@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/ranking/all-rounders/t20": "pages/ranking/all-rounders/t20.js",
-  "/ranking/all-rounders/odi": "pages/ranking/all-rounders/odi.js"
+  "/404": "pages/404.js",
+  "/": "pages/index.js",
+  "/match/details/[matchId]/[matchSlug]": "pages/match/details/[matchId]/[matchSlug].js"
 }

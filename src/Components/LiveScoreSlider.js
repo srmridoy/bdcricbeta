@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import dateFormat from 'dateformat';
+import SlickNext from "./SlickNext";
+import SlickPrev from "./SlickPrev";
+
+
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function LiveScoreSlider(props) {
   const [liveMatches, setLiveMatches] = useState(
@@ -48,10 +55,8 @@ function LiveScoreSlider(props) {
               centerPadding: '50px',
               initialSlide: 1,
               slidesToShow: 5,
-              prevArrow:
-                '<button class="prev"><img src="/assets/img/left.svg" alt="logo"></button>',
-              nextArrow:
-                '<button class="next"><img src="/assets/img/right.svg" alt="logo"></button>',
+              prevArrow: <SlickPrev />,
+              nextArrow: <SlickNext />,
               responsive: [
                 {
                   breakpoint: 1600,
@@ -98,92 +103,138 @@ function LiveScoreSlider(props) {
 
     return () => clearInterval(interval);
   }, []);
+  let settings = {
+    dots: false,
+    centerMode: true,
+    arrows: true,
+    infinite: true,
+    centerPadding: '50px',
+    slidesToShow: 5,
+    className: "live-match-slider",
+    prevArrow: <SlickPrev/>,
+    nextArrow: <SlickNext />,
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          centerMode: true,
+          centerPadding: '50px',
+          slidesToShow: 5
+        }
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          centerMode: true,
+          centerPadding: '50px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          centerMode: true,
+          centerPadding: '50px',
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          centerMode: true,
+          centerPadding: '50px',
+          slidesToShow: 1
+        }
+      }
+    ]
+  };
 
   return (
     <>
       {loaded ? (
-        <div className="live-match-area">
-          <div>
-            <div className="live-match-slider">
+          <div className="live-match-area">
+            <Slider {...settings}>
               {liveMatches.map((item, index) => (
-                <Link
-                  key={index}
-                  href={
-                    '/match/details/' +
-                    item.match_id +
-                    '/' +
-                    item.title.toLowerCase().split(' ').join('-')
-                  }
-                >
-                  <a>
-                    <div className="item">
-                      <div className="live-match-item">
-                        <div className="title">
-                          <h5>{item.competition.title}</h5>
-                        </div>
-                        <div className="compare-country">
+                  <Link
+                      key={index + index}
+                      href={
+                        '/match/details/' +
+                        item.match_id +
+                        '/' +
+                        item.title.toLowerCase().split(' ').join('-')
+                      }
+                      className="item"
+                  >
+                    <a>
+                      <div>
+                        <div className="live-match-item">
+                          <div className="title">
+                            <h5>{item.competition.title}</h5>
+                          </div>
+                          <div className="compare-country">
                           <span className="country-logo">
                             <img
-                              src={item.teama.logo_url}
-                              alt={item.teama.name}
+                                src={item.teama.logo_url}
+                                alt={item.teama.name}
                             />
                           </span>
-                          <span className="country-vs">
+                            <span className="country-vs">
                             <p>VS</p>
                           </span>
-                          <span className="country-logo">
+                            <span className="country-logo">
                             <img
-                              src={item.teamb.logo_url}
-                              alt={item.teamb.name}
+                                src={item.teamb.logo_url}
+                                alt={item.teamb.name}
                             />
                           </span>
-                        </div>
-                        <div className="compare-run">
-                          <div className="run">
-                            <h4>
-                              {item.teama.short_name}{' '}
-                              {item.teama.scores ? item.teama.scores : '0/0'}{' '}
-                              <span>
+                          </div>
+                          <div className="compare-run">
+                            <div className="run">
+                              <h4>
+                                {item.teama.short_name}{' '}
+                                {item.teama.scores ? item.teama.scores : '0/0'}{' '}
+                                <span>
                                 {item.teamb.overs
-                                  ? item.teama.overs + ' OVERS'
-                                  : '0 OVER'}
+                                    ? item.teama.overs + ' OVERS'
+                                    : '0 OVER'}
                               </span>
-                            </h4>
-                          </div>
-                          <div className="div">
-                            {' '}
-                            <img
-                              src="/assets/img/compare-div.svg"
-                              alt="svg"
-                            />{' '}
-                          </div>
-                          <div className="run">
-                            <h4>
-                              {item.teamb.short_name}{' '}
-                              {item.teamb.scores ? item.teama.scores : '0/0'}{' '}
-                              <span>
+                              </h4>
+                            </div>
+                            <div className="div">
+                              {' '}
+                              <img
+                                  src="/assets/img/compare-div.svg"
+                                  alt="svg"
+                              />{' '}
+                            </div>
+                            <div className="run">
+                              <h4>
+                                {item.teamb.short_name}{' '}
+                                {item.teamb.scores ? item.teama.scores : '0/0'}{' '}
+                                <span>
                                 {item.teamb.overs
-                                  ? item.teamb.overs + ' OVERS'
-                                  : '0 OVER'}
+                                    ? item.teamb.overs + ' OVERS'
+                                    : '0 OVER'}
                               </span>{' '}
-                            </h4>
+                              </h4>
+                            </div>
                           </div>
-                        </div>
-                        <div className="compare-match">
-                          <p>
-                            {item.status_note
-                              ? item.status_note
-                              : 'To be played'}
-                          </p>
+                          <div className="compare-match">
+                            <p>
+                              {item.status_note
+                                  ? item.status_note
+                                  : 'To be played'}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
-                </Link>
+                    </a>
+                  </Link>
               ))}
-            </div>
+
+            </Slider>
           </div>
-        </div>
+
       ) : null}
     </>
   );

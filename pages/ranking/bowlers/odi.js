@@ -27,7 +27,7 @@ function Ranking() {
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
-                    <RankingTable title="Men's Ranking" type="Bowlers" format="Odi" />
+                    <RankingTable title="Men's Ranking" type="bowlers" format="odi" />
                   </div>
                 </div>
               </div>

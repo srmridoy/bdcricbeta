@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/news": "pages/news.js",
-  "/[newsSlug]": "pages/[newsSlug].js"
+  "/ranking/all-rounders/t20": "pages/ranking/all-rounders/t20.js",
+  "/ranking/all-rounders/odi": "pages/ranking/all-rounders/odi.js"
 }

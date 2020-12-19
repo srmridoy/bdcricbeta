@@ -9,8 +9,8 @@ function RankingTable(props) {
   const activeFormat = props.format;
   const [data, setData] = useState(null);
 
-  const types = ['Teams', 'Batsmen', 'Bowlers', 'All Rounders'];
-  const formats = ['Odi', 'Test', 'T20'];
+  const types = ['teams', 'batsmen', 'bowlers', 'all-rounders'];
+  const formats = ['odi', 'test', 't20'];
 
   const [ranking, setRanking] = useState([{}, {}, {}, {}, {}]);
   const [loaded, setLoaded] = useState(false);
@@ -32,36 +32,36 @@ function RankingTable(props) {
 
   useEffect(() => {
     if (loaded) {
-      if (activeType === 'Teams') {
-        if (activeFormat === 'Odi') {
+      if (activeType === 'teams') {
+        if (activeFormat === 'odi') {
           setData(ranking.teams.odis);
-        } else if (activeFormat === 'T20') {
+        } else if (activeFormat === 't20') {
           setData(ranking.teams.t20s);
-        } else if (activeFormat === 'Test') {
+        } else if (activeFormat === 'test') {
           setData(ranking.teams.tests);
         }
-      } else if (activeType === 'Batsmen') {
-        if (activeFormat === 'Odi') {
+      } else if (activeType === 'batsmen') {
+        if (activeFormat === 'odi') {
           setData(ranking.batsmen.odis);
-        } else if (activeFormat === 'T20') {
+        } else if (activeFormat === 't20') {
           setData(ranking.batsmen.t20s);
-        } else if (activeFormat === 'Test') {
+        } else if (activeFormat === 'test') {
           setData(ranking.batsmen.tests);
         }
-      } else if (activeType === 'Bowlers') {
-        if (activeFormat === 'Odi') {
+      } else if (activeType === 'bowlers') {
+        if (activeFormat === 'odi') {
           setData(ranking.bowlers.odis);
-        } else if (activeFormat === 'T20') {
+        } else if (activeFormat === 't20') {
           setData(ranking.bowlers.t20s);
-        } else if (activeFormat === 'Test') {
+        } else if (activeFormat === 'test') {
           setData(ranking.bowlers.tests);
         }
-      } else if (activeType === 'All Rounders') {
-        if (activeFormat === 'Odi') {
+      } else if (activeType === 'all-rounders') {
+        if (activeFormat === 'odi') {
           setData(ranking['all-rounders'].odis);
-        } else if (activeFormat === 'T20') {
+        } else if (activeFormat === 't20') {
           setData(ranking['all-rounders'].t20s);
-        } else if (activeFormat === 'Test') {
+        } else if (activeFormat === 'test') {
           setData(ranking['all-rounders'].tests);
         }
       }
@@ -86,7 +86,7 @@ function RankingTable(props) {
                 {types.map((item, index) => (
                   <Link 
                     key={index} 
-                    href={"/ranking/"+item.toLowerCase().replace(" ", "-")+"/odi"} 
+                    href={"/ranking/"+item+"/odi"}
                   >
                     <a
                       className={
@@ -114,7 +114,7 @@ function RankingTable(props) {
                         {formats.map((item, index) => (
                           <Link 
                             key={index} 
-                            href={"/ranking/"+activeType.toLowerCase().replace(" ", "-")+"/"+item.toLowerCase()}
+                            href={"/ranking/"+activeType+"/"+item}
                           >
                             <a
                               className={
@@ -141,7 +141,7 @@ function RankingTable(props) {
                             <table className="table ranking-table">
                               <thead>
                                 <tr>
-                                  {activeType === 'Teams' ? (
+                                  {activeType === 'teams' ? (
                                     <>
                                       <th>Pos</th>
                                       <th style={{ textAlign: 'left' }}>
@@ -154,9 +154,9 @@ function RankingTable(props) {
                                         <span>Rating</span>
                                       </th>
                                     </>
-                                  ) : activeType === 'Batsmen' ||
-                                    activeType === 'Bowlers' ||
-                                    activeType === 'All Rounders' ? (
+                                  ) : activeType === 'batsmen' ||
+                                    activeType === 'bowlers' ||
+                                    activeType === 'all-rounders' ? (
                                     <>
                                       <th>Pos</th>
                                       <th style={{ textAlign: 'left' }}>
@@ -176,7 +176,7 @@ function RankingTable(props) {
                                 {data ? (
                                   data.map((item, index) => (
                                     <tr key={index}>
-                                      {activeType === 'Teams' ? (
+                                      {activeType === 'teams' ? (
                                         <>
                                           <td>{item.rank}</td>
                                           <td
@@ -196,9 +196,9 @@ function RankingTable(props) {
                                             {item.rating}
                                           </td>
                                         </>
-                                      ) : activeType === 'Batsmen' ||
-                                        activeType === 'Bowlers' ||
-                                        activeType === 'All Rounders' ? (
+                                      ) : activeType === 'batsmen' ||
+                                        activeType === 'bowlers' ||
+                                        activeType === 'all-rounders' ? (
                                         <>
                                           <td>{item.rank}</td>
                                           <td

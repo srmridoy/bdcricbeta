@@ -23,7 +23,7 @@ function SliderItem(props) {
   const history = useRouter();
   return (
     <>
-      <Link href={props.id ? '/match/details/' + props.id : ''}>
+      <Link href={props.id ? '/match/details/' + props.id + '/scorecard' : ''}>
         <div className="item">
           {props.id &&
           props.team1 &&
@@ -109,7 +109,7 @@ function Default(props) {
                 ? '/match/details/' +
                   props.id +
                   '/' +
-                  props.title.toLowerCase().split(' ').join('-')
+                  props.title.toLowerCase().split(' ').join('-') + '/scorecard'
                 : ''
             }
           >

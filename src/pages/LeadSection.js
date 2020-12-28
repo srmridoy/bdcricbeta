@@ -1,43 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import he from 'he';
 import Link from 'next/link';
 import NewsCards from '../Components/NewsCards';
 
 function LeadSection(props) {
-  const [leadNews, setLeadNews] = useState(
-    props.leadNews ? props.leadNews : []
-  );
-  const [loaded, setLoaded] = useState(props.loaded ? props.loaded : false);
+  const leadNews = props.leadNews ? props.leadNews : [];
+  const latestNews = props.latestNews ? props.latestNews : [];
+  const loaded = props.loaded ? props.loaded : false;
   const [activeMenu, setActiveMenu] = useState('Headline');
 
-  useEffect(() => {
-    function getLeadNews() {
-      axios
-        .get('https://www.bdcrictime.com/wp-json/acf/v3/posts/152839')
-        .then((res) => {
-          axios
-            .get(
-              'https://www.bdcrictime.com/wp-json/wp/v2/posts/' +
-                res.data.acf.top_news[0] +
-                '?_embed'
-            )
-            .then((res2) => {
-              setLeadNews(res2.data);
-              setLoaded(true);
-            })
-            .catch((err) => console.log('Error in LeadSection' + err.message));
-        });
-    }
-    getLeadNews();
-  }, [loaded]);
+  console.log(props);
 
   return (
     <>
       <div className="news-tabs">
         <nav>
           <div className="nav nav-tabs" id="nav-tab">
-            <Link href="#">
+            <Link href="#nav-1">
               <a
                 onClick={() => setActiveMenu('Headline')}
                 className={
@@ -51,7 +30,7 @@ function LeadSection(props) {
                 Headline
               </a>
             </Link>
-            <Link href="#">
+            <Link href="#nav-2">
               <a
                 onClick={() => setActiveMenu('Latest News')}
                 className={
@@ -65,7 +44,7 @@ function LeadSection(props) {
                 Latest News
               </a>
             </Link>
-            <Link href="#">
+            {/* <Link href="#nav-3">
               <a
                 onClick={() => setActiveMenu('Popular News')}
                 className={
@@ -78,12 +57,18 @@ function LeadSection(props) {
               >
                 Popular News
               </a>
-            </Link>
+            </Link> */}
           </div>
         </nav>
         <div className="tab-content">
-          <div className="tab-pane fade show active" id="nav-1">
-            {activeMenu === 'Headline' ? (
+          <div 
+            className={
+              activeMenu === 'Headline'
+                ? 'tab-pane fade show active'
+                : 'tab-pane fade'
+            }
+            id="nav-1"
+          >
               <NewsCards
                 format="lead"
                 id={leadNews.id}
@@ -104,7 +89,24 @@ function LeadSection(props) {
                     : null
                 }
               />
-            ) : null}
+          </div>
+          <div 
+            className={
+              activeMenu === 'Latest News'
+                ? 'tab-pane fade show active'
+                : 'tab-pane fade'
+            }
+            id="nav-2"
+          >
+            <div className="news-widget">
+              <div className="row">
+                {latestNews.map((item, index) =>
+                  <div key={index} className="col-lg-6 col-md-6">
+                    <NewsCards format="boxed-down" headline={loaded ? item.title.rendered : null} thumbnail={loaded ? item._embedded['wp:featuredmedia'][0].source_url : null} leadText={loaded ? item.acf.lead_text ? item.acf.lead_text : he.decode(item.excerpt.rendered.replace(/(<([^>]+)>)/gi, "")) : null} id={item.id} slug={item.slug}/>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

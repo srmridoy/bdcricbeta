@@ -161,7 +161,8 @@ function LiveScoreSlider(props) {
                         '/match/details/' +
                         item.match_id +
                         '/' +
-                        item.title.toLowerCase().split(' ').join('-')
+                        item.title.toLowerCase().split(' ').join('-') +
+                        '/scorecard'
                       }
                       className="item"
                   >
@@ -210,7 +211,7 @@ function LiveScoreSlider(props) {
                             <div className="run">
                               <h4>
                                 {item.teamb.short_name}{' '}
-                                {item.teamb.scores ? item.teama.scores : '0/0'}{' '}
+                                {item.teamb.scores ? item.teamb.scores : '0/0'}{' '}
                                 <span>
                                 {item.teamb.overs
                                     ? item.teamb.overs + ' OVERS'

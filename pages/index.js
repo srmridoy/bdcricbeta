@@ -43,7 +43,7 @@ function Homepage(props) {
             </div>
             <div className="col-lg-6 order-1 order-lg-2">
               <div className="news-main-content">
-                <LeadSection leadNews={props.leadNews} loaded={props.loaded} />
+                <LeadSection leadNews={props.leadNews} loaded={props.loaded} latestNews={props.latestNews} />
                 <div className="news-widget">
                   <div className="title mb-0">
                     <Advertisement
@@ -101,8 +101,6 @@ export async function getServerSideProps() {
     const tom = [year, month, day].join('-');
     const yes = [year1, month1, day1].join('-');
 
-    console.log(yes, tom);
-
     const res = await axios.get(
       'https://rest.entitysport.com/v2/matches/?per_page=100&date=' +
         yes +
@@ -119,7 +117,7 @@ export async function getServerSideProps() {
         item.competition.country === 'pk'
       );
     });
-    var final = filtered.length > 3 ? filtered : res.data.response.items;
+    var final = filtered.length > 5 ? filtered : res.data.response.items;
 
     var res1 = await axios.get(
       'https://www.bdcrictime.com/wp-json/acf/v3/posts/152839',
@@ -133,10 +131,16 @@ export async function getServerSideProps() {
       param
     );
 
+    var res3 = await axios.get(
+      'https://www.bdcrictime.com/wp-json/wp/v2/posts?per_page=4&_embed',
+      param
+    );
+
     return {
       props: {
         liveMatches: final.reverse(),
         leadNews: res2.data,
+        latestNews: res3.data,
         loaded: true,
       },
     };

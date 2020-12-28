@@ -64,7 +64,6 @@ function Author(props) {
   const handleSelect = (date) => {
     setDate(date);
     setDateChanged(true);
-    console.log();
   };
 
   return (

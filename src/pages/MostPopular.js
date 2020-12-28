@@ -4,7 +4,7 @@ import Link from 'next/link';
 function MostPopular() {
   return (
     <>
-      <div className="sidebar-widget popular-widget">
+      {/* <div className="sidebar-widget popular-widget">
         <h4 className="heading-title">Most Popular</h4>
         <div>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -54,7 +54,7 @@ function MostPopular() {
           <div className="tab-pane fade" id="nav-8"></div>
           <div className="tab-pane fade" id="nav-9"></div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

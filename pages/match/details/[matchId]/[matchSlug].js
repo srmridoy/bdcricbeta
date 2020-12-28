@@ -569,86 +569,46 @@ function MatchDetails(props) {
                             role="tablist"
                           >
                             {loaded && match.status === 3 ? (
-                              <a
-                                className="nav-item nav-link"
-                                id="tbOne-tab"
-                                data-toggle="tab"
-                                href="#tbOne"
-                                role="tab"
-                                aria-controls="nav-home"
-                                aria-selected="true"
-                              >
-                                Live
-                              </a>
+                              <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/live"}>
+                                <a className="nav-item nav-link">
+                                  Live
+                                </a>
+                              </Link>
                             ) : null}
-
                             {loaded && match.status === 1 ? null : (
                               <>
-                                <a
-                                  className="nav-item nav-link active"
-                                  id="tbTwo-tab"
-                                  data-toggle="tab"
-                                  href="#tbTwo"
-                                  role="tab"
-                                  aria-controls="nav-profile"
-                                  aria-selected="false"
-                                >
-                                  Scorecard
-                                </a>
-
-                                <a
-                                  className="nav-item nav-link"
-                                  id="tbThree-tab"
-                                  data-toggle="tab"
-                                  href="#tbThree"
-                                  role="tab"
-                                  aria-controls="nav-contact"
-                                  aria-selected="false"
-                                >
-                                  Commentary
-                                </a>
-
-                                <a
-                                  className="nav-item nav-link"
-                                  id="tbFour-tab"
-                                  data-toggle="tab"
-                                  href="#tbFour"
-                                  role="tab"
-                                  aria-controls="nav-contact"
-                                  aria-selected="false"
-                                >
-                                  Statistics
-                                </a>
-                              </>
+                                <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/scorecard"}>
+                                  <a className="nav-item nav-link">
+                                    Scorecard
+                                  </a>
+                                </Link>
+                                <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/commentary"}>
+                                  <a className="nav-item nav-link">
+                                    Commentary
+                                  </a>
+                                </Link>
+                                <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/statistics"}>
+                                  <a className="nav-item nav-link">
+                                    Statistics
+                                  </a>
+                                </Link>
+                                <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/statistics"}>
+                                  <a className="nav-item nav-link">
+                                    Statistics
+                                  </a>
+                                </Link>
+                              </>                            
                             )}
-
-                            <a
-                              className={
-                                match.status === 1
-                                  ? 'nav-item nav-link active'
-                                  : 'nav-item nav-link'
-                              }
-                              id="tbFive-tab"
-                              data-toggle="tab"
-                              href="#tbFive"
-                              role="tab"
-                              aria-controls="nav-contact"
-                              aria-selected="false"
-                            >
-                              Line-Ups
-                            </a>
-
-                            <a
-                              className="nav-item nav-link"
-                              id="tbSix-tab"
-                              data-toggle="tab"
-                              href="#tbSix"
-                              role="tab"
-                              aria-controls="nav-contact"
-                              aria-selected="false"
-                            >
-                              Info
-                            </a>
+                            <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/line-ups"}>
+                              <a className="nav-item nav-link">
+                                Line-Ups
+                              </a>
+                            </Link>
+                            <Link href={"/match/details/"+history.query.matchId+"/"+history.query.matchSlug+"/info"}>
+                              <a className="nav-item nav-link">
+                                Info
+                              </a>
+                            </Link>
                           </div>
                         </nav>
                         <div className="tab-content" id="nav-tabContent">
@@ -749,7 +709,7 @@ function MatchDetails(props) {
                                     <tbody>
                                       {live.bowlers.map((item, index) => (
                                         <tr key={index}>
-                                          <td>
+                                          <td>asdfasdsdfasddf
                                             <div className="player-name-img">
                                               <img
                                                 src="/img/player-img.svg"

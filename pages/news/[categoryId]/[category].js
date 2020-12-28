@@ -149,7 +149,6 @@ export async function getServerSideProps({ params }) {
   try {
     const url = 'https://www.bdcrictime.com/wp-json/wp/v2/menus';
     const res = await axios.get(url);
-    console.log(params.categoryId);
     if (res && res.data) {
       const news = await axios.get(
         'https://www.bdcrictime.com/wp-json/wp/v2/posts?categories=' +

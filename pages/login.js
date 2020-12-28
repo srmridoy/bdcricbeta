@@ -35,7 +35,6 @@ function Login() {
           password: password,
         })
         .then(function (response) {
-          console.log(Encryption.encrypt('token'));
           localStorage.setItem(
             'InRva2VuIg==',
             Encryption.encrypt(response.data)
